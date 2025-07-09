@@ -63,7 +63,6 @@ ip link set veth-router-br1 master br1
 ip link set veth-router-br2 master br2
 ip link set veth-router-br1 up
 ip link set veth-router-br2 up
-ip netns exec router ip link set lo up
 
 for ns in node1 node2; do
   echo "=== Setting up routing for $ns ==="
