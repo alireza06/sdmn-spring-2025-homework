@@ -73,3 +73,7 @@ for ns in node3 node4; do
   echo "=== Setting up routing for $ns ==="
   ip netns exec "$ns" ip route add default via 10.10.0.1
 done
+
+echo "=== Configuring routing ==="
+# Enable forwarding in router namespace
+ip netns exec router sysctl -q -w net.ipv4.ip_forward=1
