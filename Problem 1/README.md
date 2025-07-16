@@ -94,11 +94,7 @@ Now, nodes from different subnets can communicate with each other through the ro
      - Forward packets from `br1` to `br2` even across different subnets at layer‑2.
 
 4. **Connecting the Switch Interface Directly into the Bridge**
-   - Attach the switch-facing interface as a port of the Linux bridge:
-     ```sh
-     brctl addif br1 ethX
-     brctl addif br2 ethY
-     ```
+   - Attach the switch-facing interface as a port of the Linux bridge.
    - Optionally, assign an IP on that interface for management or routing.
    - Use the switch’s management plane or OpenFlow to steer cross‑subnet traffic through specific bridge ports.
 
