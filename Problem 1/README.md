@@ -47,4 +47,9 @@ sudo ip addr add 10.10.0.1/24 dev br2
     sudo sysctl -q -w net.ipv4.ip_forward=1
     ```
 
+OR, to automate all the above steps, simply run the `remove_router.sh` script:
+```bash
+sudo ./remove_router.sh
+```
+
 Now, nodes from different subnets can communicate with each other through the root namespace, even without the `router` namespace.
