@@ -2,7 +2,7 @@
 # A simple container runtime in Bash, demonstrating the use of Linux namespaces
 # and cgroups to create an isolated environment.
 
-# --- Configuration ---
+# --- Configuration ---S
 # The path to the base Ubuntu root filesystem.
 # The script will create a copy of this for each container.
 BASE_ROOTFS="/var/lib/mycontainers/ubuntu2004/"
@@ -118,15 +118,15 @@ unshare --fork --pid --mount-proc --uts --net --mount /bin/bash -c "
     # This part of the script runs INSIDE the new namespaces as the child process.
 
     # Add the current process (the container's init) to the cgroup
-    # The '$$' here refers to the PID of *this* sub-shell.
+    # The '$$' here refers to the PID of *this* sub-shell (where it is '1').
     if [ -n \"$MEMORY_LIMIT_MB\" ]; then
         echo \$$ > \"$CGROUP_PATH/cgroup.procs\"
     fi
 
     # Bind mount the Host container's (for accessing /dev/null and /dev/zeros for memory limit testing)
-    mount --bind /dev \"$CONTAINER_ROOTFS/dev\"    
+    # mount --bind /dev \"$CONTAINER_ROOTFS/dev\"  
 
-    # 1. Set the container's hostname
+    # # 1. Set the container's hostname
     hostname \"$HOSTNAME\"
 
     # # 2. Isolate the filesystem with chroot
@@ -143,5 +143,4 @@ unshare --fork --pid --mount-proc --uts --net --mount /bin/bash -c "
     rmdir ./old_root
     /bin/bash
 "
-
-echo "Container '$HOSTNAME' has exited."
+echo "Container '$HOSTNAME' is running with PID: $$"
