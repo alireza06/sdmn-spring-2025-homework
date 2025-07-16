@@ -36,7 +36,11 @@ sudo ip netns delete router
 
 After creating the topology:
 
-1. **Assign IP addresses** from the root namespace to the bridges (`br1`, `br2`) using the previous default gateway.
+1. **Assign IP addresses** from the root namespace to the bridges (`br1`, `br2`) using the previous default gateway:
+```bash
+sudo ip addr add 172.0.0.1/24 dev br1
+sudo ip addr add 10.10.0.1/24 dev br2
+```
 2. **Enable IP forwarding** in the root namespace:
 
     ```bash
