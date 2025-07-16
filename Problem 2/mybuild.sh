@@ -123,14 +123,13 @@ unshare --fork --pid --mount-proc --uts --net --mount /bin/bash -c "
         echo \$$ > \"$CGROUP_PATH/cgroup.procs\"
     fi
 
-    # Bind mount the Host container's (for accessing /dev/null and /dev/zeros for memory limit testing)
-    # mount --bind /dev \"$CONTAINER_ROOTFS/dev\"  
-
-    # # 1. Set the container's hostname
+    # 1. Set the container's hostname
     hostname \"$HOSTNAME\"
 
     # # 2. Isolate the filesystem with chroot
     # # Change the root directory to our container's private rootfs.
+    # # Bind mount the Host container's (for accessing /dev/null and /dev/zeros for memory limit testing)
+    # mount --bind /dev \"$CONTAINER_ROOTFS/dev\"  
     # chroot \"$CONTAINER_ROOTFS\" /bin/bash
 
     # 2. Isolate the filesystem with pivot_root
@@ -143,4 +142,3 @@ unshare --fork --pid --mount-proc --uts --net --mount /bin/bash -c "
     rmdir ./old_root
     /bin/bash
 "
-echo "Container '$HOSTNAME' is running with PID: $$"
