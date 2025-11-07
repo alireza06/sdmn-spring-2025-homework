@@ -63,7 +63,7 @@ This directory contains a minimal Python HTTP server implementing a RESTful API 
 
 1. Clone the repository:
     ```bash
-    git clone <repo-url>
+    git clone https://github.com/alireza06/sdmn-spring-2025-homework
     cd SDN_hw2
     ```
 
